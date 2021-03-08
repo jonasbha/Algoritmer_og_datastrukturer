@@ -8,7 +8,7 @@ public class RuntimeTest {
         this.numTests = numTests;
     }
 
-    private int numTests;
+    private final int numTests;
     private long time;
     private float total = 0;
 
@@ -58,6 +58,18 @@ public class RuntimeTest {
 
             time = System.currentTimeMillis();
             new LogarithmicSorting().mergeSort(arr, 0, arr.length - 1);
+            time = (System.currentTimeMillis() - time);
+            total += time;
+        }
+        return total / numTests / 1000;
+    }
+
+    public float myMergeSort(int n) {
+        for (int i = 0; i < numTests; i++) {
+            int[] arr = createArray(n);
+
+            time = System.currentTimeMillis();
+            new LogarithmicSorting().myMergeSort(arr);
             time = (System.currentTimeMillis() - time);
             total += time;
         }

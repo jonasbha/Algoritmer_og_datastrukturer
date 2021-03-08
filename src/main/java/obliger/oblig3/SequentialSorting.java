@@ -7,7 +7,7 @@ import java.util.Stack;
 
 public class SequentialSorting {
 
-    // ubrukelig siden det gjøres for mange assignments i indre løkke.
+    // mindre effektiv siden det gjøres for mange assignments/operasjoner i indre løkke.
     public int[] myInsertionSort(int[] A) {
 
         for (int i = 1; i < A.length; i++) {
@@ -21,7 +21,7 @@ public class SequentialSorting {
         return A;
     }
 
-    public int[] insertionSort(int A[]) {
+    public int[] insertionSort(int[] A) {
         int n = A.length;
         int key;
 

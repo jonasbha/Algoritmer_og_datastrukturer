@@ -1,10 +1,8 @@
 package obliger.oblig3;
 
-import java.util.Arrays;
-
 public class LogarithmicSorting {
 
-    public int[] quickSort(int A[], int min, int max) {
+    public int[] quickSort(int[] A, int min, int max) {
         // Quicksort av array med heltall
 
         int indexofpartition;
@@ -23,7 +21,7 @@ public class LogarithmicSorting {
         return A;
     }
 
-    public int[] quickSort_efficient(int A[], int min, int max) {
+    public int[] quickSort_efficient(int[] A, int min, int max) {
 
         int indexofpartition;
 
@@ -114,16 +112,12 @@ public class LogarithmicSorting {
 
             int mid = max / 2;
 
-            int t = A[min];
-
             if (A[min] < A[max])
                 A[min] = Math.min(A[max], A[mid]);
             else
                 A[min] = Math.min(A[min], A[mid]);
 
-            partitionelement = t;
-        } else
-            partitionelement = A[max];
+        }
 
         partitionelement = A[max];
 
@@ -200,23 +194,23 @@ public class LogarithmicSorting {
         return A;
     }
 
-    // Er ubrukelig ettersom oppdelingen av array er O(n log(n))
+    // Er ubrukelig ettersom oppdelingen av array (split) er O(n log(n))
     public int[] myMergeSort(int[] A) {
 
         if (A.length == 1)
             return A;
 
-        int[][] ls = del(A);
+        int[][] ls = split(A);
         int[] left = ls[0];
         int[] right = ls[1];
 
         myMergeSort(left);
         myMergeSort(right);
 
-        return flett(A, left, right);
+        return merge(A, left, right);
     }
 
-    private int[] flett(int[] A, int[] left, int[] right) {
+    private int[] merge(int[] A, int[] left, int[] right) {
 
         int l = 0;
         int r = 0;
@@ -246,17 +240,15 @@ public class LogarithmicSorting {
         return A;
     }
 
-    private int[][] del(int[] A) {
+    private int[][] split(int[] A) {
         int[][] ls = new int[A.length][2];
 
-        int midt = Math.round(A.length / 2);
+        int midt = A.length / 2;
 
         int[] del1 = new int[midt];
         int[] del2 = new int[A.length-midt];
-        for (int i = 0; i < midt; i++)
-            del1[i] = A[i];
-        for (int i = 0; i < A.length - midt; i++)
-            del2[i] = A[midt + i];
+        System.arraycopy(A, 0, del1, 0, midt);
+        if (A.length - midt >= 0) System.arraycopy(A, midt, del2, 0, A.length - midt);
 
         ls[0] = del1;
         ls[1] = del2;
