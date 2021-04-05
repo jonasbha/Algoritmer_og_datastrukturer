@@ -1,4 +1,4 @@
-package obliger;
+package obliger.oblig2;
 
 import java.util.Scanner;
 
